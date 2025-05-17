@@ -1,58 +1,41 @@
-# Hướng dẫn tạo React project và đẩy lên GitHub
+# Hướng dẫn Git cơ bản 
 
-## 1. Tạo project React
+# 1. Khởi tạo repo Git trong thư mục hiện tại
+git init
 
-- **Cách 1: Create React App**
+# 2. Kiểm tra trạng thái file
+git status
 
-```bash
-npx create-react-app my-app
-cd my-app
-npm start
-----------------------------------
-Cách 2: Vite
+# 3. Thêm file vào staging area
+git add <file>          # Thêm file cụ thể
+git add .               # Thêm tất cả file thay đổi
 
-npm create vite@latest my-app -- --template react
-cd my-app
-npm install
-npm run dev
+# 4. Tạo commit với message
+git commit -m "Mô tả thay đổi"
 
-2. Tạo repository trên GitHub
-Đăng nhập https://github.com
+# 5. Xem lịch sử commit
+git log
 
-Nhấn New repository
+# 6. Tạo nhánh mới và chuyển sang nhánh đó
+git checkout -b ten-nhanh-moi
 
-Đặt tên repo (ví dụ my-app)
+# 7. Chuyển nhánh hiện tại
+git checkout ten-nhanh
 
-Chọn Public/Private, nhấn Create repository
+# 8. Kết nối remote repo trên GitHub
+git remote add origin https://github.com/username/repo.git
 
---------------------------------------
-3. Đẩy code lên GitHub
-git init                    # Khởi tạo git nếu chưa có
-git add .                   # Thêm file
-git commit -m "Init project"  # Commit
-git remote add origin https://github.com/username/my-app.git  # Thêm remote
-git branch -M main          # Đổi sang nhánh main (nếu muốn)
-git push -u origin main     # Push code lên GitHub
---------------------------------------
-4. Xử lý lỗi thường gặp
-Lỗi src refspec main does not match any:
+# 9. Đẩy code lên nhánh main
+git push -u origin main
 
-Kiểm tra nhánh hiện tại:
+# 10. Kéo code mới từ nhánh main
+git pull origin main
 
-git branch
-Nếu nhánh là master, dùng:
-
-git push -u origin master
-Nếu remote đã có commit, cần pull trước rồi push:
-
-git pull origin main --rebase
+# 11. Xóa file khỏi repo
+git rm file.txt
+git commit -m "Xóa file"
 git push origin main
-5. Xóa file trên GitHub
-Trên GitHub: vào file → Delete this file → commit thay đổi
 
-Hoặc trên local:
+# 12. Đổi tên nhánh hiện tại thành main (nếu cần)
+git branch -M main
 
-git rm path/to/file
-git commit -m "Delete file"
-git push origin main
-```
