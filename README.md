@@ -39,7 +39,7 @@ git push origin main
  12. Đổi tên nhánh hiện tại thành main (nếu cần)
 git branch -M main
 
-Hướng dẫn tạo Git cho project mới
+# Hướng dẫn tạo Git cho project mới
 Bước 1: Cài đặt Git
 Tải Git tại: https://git-scm.com/downloads
 
