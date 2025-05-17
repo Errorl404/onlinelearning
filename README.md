@@ -39,3 +39,55 @@ git push origin main
  12. Đổi tên nhánh hiện tại thành main (nếu cần)
 git branch -M main
 
+Hướng dẫn tạo Git cho project mới
+Bước 1: Cài đặt Git
+Tải Git tại: https://git-scm.com/downloads
+
+Cài đặt theo hướng dẫn cho hệ điều hành của bạn.
+
+Bước 2: Khởi tạo repository Git trong thư mục project
+Mở terminal (CMD/PowerShell/macOS Terminal) rồi:
+
+bash
+Sao chép
+Chỉnh sửa
+cd đường_dẫn_đến_folder_project
+git init
+Lệnh git init sẽ tạo thư mục ẩn .git, giúp Git theo dõi các thay đổi trong project.
+
+Bước 3: Thêm file vào vùng staging
+bash
+Sao chép
+Chỉnh sửa
+git add .
+Lệnh này thêm tất cả file (file mới hoặc đã chỉnh sửa) vào vùng chờ commit.
+
+Bước 4: Tạo commit đầu tiên
+bash
+Sao chép
+Chỉnh sửa
+git commit -m "Initial commit"
+Đây là bước lưu lại trạng thái file với lời nhắn mô tả.
+
+Bước 5: Tạo repository trên GitHub
+Vào https://github.com/
+
+Đăng nhập, nhấn nút New repository
+
+Đặt tên repo, chọn public hoặc private
+
+Nhấn Create repository
+
+Bước 6: Kết nối Git local với GitHub
+bash
+Sao chép
+Chỉnh sửa
+git remote add origin https://github.com/username/repo-name.git
+Thay username và repo-name bằng thông tin của bạn.
+
+Bước 7: Đẩy code lên GitHub
+bash
+Sao chép
+Chỉnh sửa
+git branch -M main          # Đổi tên nhánh chính thành main (nếu cần)
+git push -u origin main
