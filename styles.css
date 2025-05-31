@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 10px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#course-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+#course-list li {
+  background: #f0f0f0;
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#course-list li:hover {
+  background: #ddd;
+}
+
+#back-button {
+  margin-bottom: 20px;
+}

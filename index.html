@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trang chủ - OnlineLearn</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Taskbar trên cùng */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffcc00;
+      padding: 10px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    .navbar .logo-container img {
+      height: 40px;
+      margin-right: 10px;
+      border-radius: 4px;
+      background: white;
+      padding: 2px;
+    }
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-grow: 1;
+      margin-left: 20px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s;
+      cursor: pointer;
+      user-select: none;
+    }
+    .nav-links a:hover {
+      color: #444400;
+    }
+
+    /* Thanh tìm kiếm */
+    .search-container {
+      margin-left: auto;
+    }
+    .search-container input {
+      padding: 6px 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      width: 200px;
+      transition: border-color 0.3s;
+    }
+    .search-container input:focus {
+      outline: none;
+      border-color: #ffcc00;
+      box-shadow: 0 0 5px #ffcc00;
+    }
+
+    /* Layout chính: sidebar trái + nội dung */
+    .main-layout {
+      display: flex;
+      flex-grow: 1;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* Sidebar trái */
+    .sidebar {
+      width: 220px;
+      background-color: #fff;
+      border-right: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+      box-shadow: 2px 0 8px rgb(0 0 0 / 0.05);
+    }
+
+    .account-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: url('/logo/account.png') no-repeat center center;
+      background-size: cover;
+      margin: 0 auto 10px;
+      border: 3px solid #ffcc00;
+    }
+    .account-name {
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 16px;
+      user-select: none;
+    }
+
+    .sidebar-menu {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 0 20px;
+    }
+    .sidebar-menu button {
+      padding: 12px 15px;
+      font-size: 16px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      text-align: left;
+      border-radius: 6px;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+      user-select: none;
+    }
+    .sidebar-menu button:hover, .sidebar-menu button.active {
+      background-color: #ffcc00;
+      color: #222;
+      font-weight: 700;
+    }
+
+    /* Nội dung chính */
+    .content {
+      flex-grow: 1;
+      padding: 30px 40px;
+      overflow-y: auto;
+      background-color: #fefefe;
+    }
+
+    /* Các phần nội dung (ẩn/hiện bằng JS) */
+    #home-content, #courses-content, #contact-content, #course-detail-content, #user-info-content {
+      display: none;
+    }
+    #home-content.active, #courses-content.active, #contact-content.active, #user-info-content.active {
+      display: block;
+    }
+    #course-detail-content.active {
+      display: block;
+    }
+
+    /* Khóa học */
+    .course-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 700px;
+      margin-top: 10px;
+    }
+    .course-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+    }
+    .course-item h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    .course-item p {
+      margin: 0 0 10px 0;
+      color: #555;
+      line-height: 1.4;
+    }
+    .course-item button {
+      background-color: #ffcc00;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .course-item button:hover {
+      background-color: #e6b800;
+    }
+
+    /* Chi tiết khóa học */
+    #course-detail-content {
+      max-width: 700px;
+    }
+    #course-detail-content h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+    #course-detail-content p {
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    #course-detail-content button {
+      background-color: #ffcc00;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s;
+    }
+    #course-detail-content button:hover {
+      background-color: #e6b800;
+    }
+
+    /* Thông tin người dùng */
+    #user-info-content {
+      max-width: 700px;
+    }
+    #user-info-content h1 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    #user-info-content p {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+    #user-info-content button.logout-btn {
+      background-color: #ff4d4d;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #user-info-content button.logout-btn:hover {
+      background-color: #cc0000;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Thanh taskbar trên cùng -->
+  <div class="navbar">
+    <div class="logo-container">
+      <img src="/logo/logo.png" alt="Logo" onerror="this.style.display='none'"/>
+      <span><strong>OnlineLearn</strong></span>
+    </div>
+
+    <div class="nav-links">
+      <a onclick="showContent('home')" >Trang chủ</a>
+      <a onclick="showContent('courses')">Khóa học</a>
+      <a onclick="showContent('contact')">Liên hệ</a>
+      <a onclick="showContent('user-info')">Thông tin người dùng</a>
+    </div>
+
+    <div class="search-container">
+      <input type="search" placeholder="Tìm khóa học..." id="searchInput" oninput="filterCourses()" />
+    </div>
+  </div>
+
+  <!-- Layout chính: sidebar + nội dung -->
+  <div class="main-layout">
+
+    <!-- Sidebar trái -->
+    <div class="sidebar">
+      <div class="account-logo" title="Tài khoản"></div>
+      <div class="account-name">Tên Người Dùng</div>
+      <div class="sidebar-menu">
+        <button id="menu-home" class="active" onclick="showContent('home')">Trang chủ</button>
+        <button id="menu-courses" onclick="showContent('courses')">Khóa học</button>
+        <button id="menu-contact" onclick="showContent('contact')">Liên hệ</button>
+        <button id="menu-user-info" onclick="showContent('user-info')">Thông tin người dùng</button>
+      </div>
+    </div>
+
+    <!-- Nội dung chính -->
+    <div class="content">
+      <!-- Trang chủ -->
+      <div id="home-content" class="active">
+        <h1>Chào mừng bạn đến OnlineLearn!</h1>
+        <p>Học mọi lúc, mọi nơi với hàng trăm khóa học chất lượng.</p>
+      </div>
+
+      <!-- Khóa học -->
+      <div id="courses-content">
+        <h2>Danh sách khóa học</h2>
+        <div id="courseList" class="course-list"></div>
+      </div>
+
+      <!-- Chi tiết khóa học -->
+      <div id="course-detail-content">
+        <h2 id="detail-title"></h2>
+        <p id="detail-description"></p>
+        <button onclick="backToCourses()">Quay lại danh sách</button>
+      </div>
+
+      <!-- Liên hệ -->
+      <div id="contact-content">
+        <h1>Liên hệ với chúng tôi</h1>
+        <p>Email: contact@onlinelearn.vn</p>
+        <p>Điện thoại: 0909 123 456</p>
+        <p>Địa chỉ: 123 Đường ABC, TP. Hồ Chí Minh</p>
+      </div>
+
+      <!-- Thông tin người dùng -->
+      <div id="user-info-content">
+        <h1>Thông tin người dùng</h1>
+        <p><strong>Tên:</strong> Nguyễn Văn A</p>
+        <p><strong>Email:</strong> nguyenvana@example.com</p>
+        <p><strong>Số điện thoại:</strong> 0909123456</p>
+        <button class="logout-btn" onclick="logout()">Đăng xuất</button>
+      </div>
+
+    </div>
+
+  </div>
+
+<script>
+  // Dữ liệu khóa học mẫu
+  const courses = [
+    { id: 1, title: "HTML cơ bản", description: "Học cách tạo website với HTML.", url: "course-html.html" },
+    { id: 2, title: "CSS nâng cao", description: "Tạo giao diện đẹp với CSS.", url: "course-css.html" },
+    { id: 3, title: "JavaScript cho người mới", description: "Lập trình web tương tác với JS.", url: "course-js.html" },
+    { id: 4, title: "Node.js và Express", description: "Phát triển backend với Node.js.", url: "course-node.html" },
+    { id: 5, title: "MongoDB căn bản", description: "Quản lý cơ sở dữ liệu với MongoDB.", url: "course-mongo.html" }
+  ];
+
+  const courseListEl = document.getElementById('courseList');
+  const detailTitleEl = document.getElementById('detail-title');
+  const detailDescEl = document.getElementById('detail-description');
+
+  // Hiển thị danh sách khóa học, có thể lọc theo từ khóa (filter)
+  function displayCourses(filter = '') {
+    courseListEl.innerHTML = '';
+    const filtered = courses.filter(course =>
+      course.title.toLowerCase().includes(filter.toLowerCase())
+    );
+    if (filtered.length === 0) {
+      courseListEl.innerHTML = '<p>Không tìm thấy khóa học phù hợp.</p>';
+      return;
+    }
+    filtered.forEach(course => {
+      const div = document.createElement('div');
+      div.className = 'course-item';
+      div.innerHTML = `
+        <h3>${course.title}</h3>
+        <p>${course.description}</p>
+        <button onclick="window.location.href='${course.url}'">Xem chi tiết</button>
+      `;
+      courseListEl.appendChild(div);
+    });
+  }
+
+  // Hiển thị chi tiết khóa học (không dùng nữa nếu chuyển trang)
+  function showCourseDetail(id) {
+    const course = courses.find(c => c.id === id);
+    if (!course) return;
+    detailTitleEl.textContent = course.title;
+    detailDescEl.textContent = course.description;
+    toggleContent('course-detail-content');
+  }
+
+  // Quay lại danh sách khóa học
+  function backToCourses() {
+    toggleContent('courses-content');
+  }
+
+  // Lọc khóa học theo từ khóa nhập vào ô tìm kiếm
+  function filterCourses() {
+    const keyword = document.getElementById('searchInput').value.trim();
+    displayCourses(keyword);
+  }
+
+  // Hiển thị phần nội dung theo id (vd: 'home-content')
+  function toggleContent(showId) {
+    const contents = ['home-content', 'courses-content', 'contact-content', 'course-detail-content', 'user-info-content'];
+    contents.forEach(id => {
+      document.getElementById(id).classList.toggle('active', id === showId);
+    });
+  }
+
+  // Xử lý khi người dùng chọn menu sidebar hoặc navbar
+  function showContent(contentName) {
+    const contentId = contentName + '-content';
+
+    if (contentId !== 'course-detail-content') {
+      toggleContent(contentId);
+    }
+
+    document.querySelectorAll('.sidebar-menu button').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    const menuBtn = document.getElementById('menu-' + contentName);
+    if (menuBtn) {
+      menuBtn.classList.add('active');
+    }
+
+    if (contentName === 'courses') {
+      displayCourses();
+    }
+  }
+
+  // Đăng xuất, chuyển về trang login
+  function logout() {
+    window.location.href = 'login.html';
+  }
+
+  // Khởi tạo hiển thị trang lúc load
+  window.onload = () => {
+    displayCourses();
+  }
+</script>
+
+</body>
+</html>

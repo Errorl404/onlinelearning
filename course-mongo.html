@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khóa học MongoDB - cơ sở dữ liệu NoSQL</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; background: #fefefe; max-width: 800px; margin: auto; }
+    h1 { color: #ffcc00; }
+    nav a { text-decoration: none; color: #333; margin-right: 20px; font-weight: bold; }
+    nav a:hover { color: #ffcc00; }
+    section { margin-top: 20px; }
+    pre { background: #eee; padding: 15px; border-radius: 8px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">← Về Trang chủ</a>
+</nav>
+
+<h1>Khóa học MongoDB - cơ sở dữ liệu NoSQL</h1>
+
+<section>
+  <h2>1. Giới thiệu MongoDB</h2>
+  <p>MongoDB là cơ sở dữ liệu NoSQL dùng tài liệu (document) để lưu trữ dữ liệu.</p>
+</section>
+
+<section>
+  <h2>2. Cài đặt MongoDB</h2>
+  <p>Tải MongoDB Community Server và cài đặt.</p>
+</section>
+
+<section>
+  <h2>3. Các thao tác cơ bản</h2>
+  <pre>
+use mydb
+db.createCollection("courses")
+db.courses.insertOne({title: "MongoDB Basics", description: "Học MongoDB"})
+db.courses.find()
+  </pre>
+</section>
+
+<section>
+  <h2>4. Sử dụng với Node.js</h2>
+  <pre>
+const { MongoClient } = require('mongodb');
+const uri = "mongodb://localhost:27017";
+const client = new MongoClient(uri);
+
+async function run() {
+  try {
+    await client.connect();
+    const database = client.db('mydb');
+    const courses = database.collection('courses');
+    const course = await courses.findOne({});
+    console.log(course);
+  } finally {
+    await client.close();
+  }
+}
+run().catch(console.dir);
+  </pre>
+</section>
+
+<section>
+  <h2>5. Tổng kết</h2>
+  <p>Bạn đã biết cách sử dụng MongoDB cơ bản và kết nối với Node.js.</p>
+</section>
+
+</body>
+</html>

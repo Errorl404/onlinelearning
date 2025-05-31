@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khóa học Node.js cơ bản</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; background: #fefefe; max-width: 800px; margin: auto; }
+    h1 { color: #ffcc00; }
+    nav a { text-decoration: none; color: #333; margin-right: 20px; font-weight: bold; }
+    nav a:hover { color: #ffcc00; }
+    section { margin-top: 20px; }
+    pre { background: #eee; padding: 15px; border-radius: 8px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">← Về Trang chủ</a>
+</nav>
+
+<h1>Khóa học Node.js cơ bản</h1>
+
+<section>
+  <h2>1. Giới thiệu Node.js</h2>
+  <p>Node.js là môi trường chạy JavaScript trên server, giúp xây dựng ứng dụng backend.</p>
+</section>
+
+<section>
+  <h2>2. Cài đặt Node.js</h2>
+  <p>Tải Node.js từ trang chính thức và cài đặt.</p>
+</section>
+
+<section>
+  <h2>3. Viết server đơn giản</h2>
+  <pre>
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Xin chào từ server Node.js!');
+});
+
+server.listen(3000, () => {
+  console.log('Server chạy tại http://localhost:3000');
+});
+  </pre>
+</section>
+
+<section>
+  <h2>4. Chạy server</h2>
+  <p>Chạy lệnh <code>node app.js</code> trong terminal.</p>
+</section>
+
+<section>
+  <h2>5. Tổng kết</h2>
+  <p>Bạn đã biết cách tạo server cơ bản bằng Node.js.</p>
+</section>
+
+</body>
+</html>

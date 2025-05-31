@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khóa học JavaScript căn bản</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px 40px;
+      color: #222;
+      line-height: 1.6;
+    }
+    nav a {
+      text-decoration: none;
+      color: #0d6efd;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    nav a:hover {
+      color: #ffb703;
+    }
+    h1 {
+      color: #0d6efd;
+      margin-bottom: 24px;
+    }
+    h2 {
+      color: #023e8a;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      border-left: 5px solid #0d6efd;
+      padding-left: 10px;
+    }
+    p {
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+    pre {
+      background-color: #f1f3f5;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      border: 1px solid #ccc;
+    }
+    code {
+      font-family: monospace;
+      background: #e9ecef;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">← Về Trang chủ</a>
+</nav>
+
+<h1>Khóa học JavaScript căn bản</h1>
+
+<section>
+  <h2>1. Giới thiệu JavaScript</h2>
+  <p>JavaScript là ngôn ngữ lập trình phổ biến trên web, giúp tạo ra các tương tác động, xử lý sự kiện và xây dựng các ứng dụng web hiện đại.</p>
+</section>
+
+<section>
+  <h2>2. Biến và kiểu dữ liệu</h2>
+  <p>Biến dùng để lưu trữ dữ liệu trong chương trình. JavaScript có ba cách khai báo biến: <code>var</code>, <code>let</code> và <code>const</code>. Các kiểu dữ liệu phổ biến bao gồm số, chuỗi, boolean, object và array.</p>
+  <pre>
+let name = "Nguyễn Văn A";    // Chuỗi (string)
+const age = 25;               // Số (number)
+let isStudent = true;         // Boolean (true/false)
+  </pre>
+</section>
+
+<section>
+  <h2>3. Toán tử và biểu thức</h2>
+  <p>Toán tử được sử dụng để thực hiện các phép toán trên biến và giá trị. JavaScript hỗ trợ các toán tử số học, so sánh, logic và gán.</p>
+  <pre>
+let a = 10;
+let b = 5;
+let sum = a + b;             // 15
+let isEqual = (a === b);     // false
+let isGreater = (a > b);     // true
+  </pre>
+</section>
+
+<section>
+  <h2>4. Câu điều kiện</h2>
+  <p>Câu điều kiện giúp kiểm tra và quyết định luồng xử lý trong chương trình.</p>
+  <pre>
+let score = 8;
+if (score >= 5) {
+  console.log("Đậu");
+} else {
+  console.log("Rớt");
+}
+  </pre>
+</section>
+
+<section>
+  <h2>5. Vòng lặp</h2>
+  <p>Vòng lặp cho phép thực hiện một đoạn mã nhiều lần. JavaScript hỗ trợ các vòng lặp như <code>for</code>, <code>while</code> và <code>do...while</code>.</p>
+  <pre>
+// Vòng lặp for
+for (let i = 0; i < 5; i++) {
+  console.log("Lặp lần thứ " + i);
+}
+  </pre>
+</section>
+
+<section>
+  <h2>6. Hàm và gọi hàm</h2>
+  <p>Hàm là tập hợp các câu lệnh thực hiện một nhiệm vụ cụ thể và có thể tái sử dụng. Hàm được khai báo bằng từ khóa <code>function</code>.</p>
+  <pre>
+function greet(name) {
+  alert("Chào " + name);
+}
+
+greet("Nguyễn Văn A");  // Gọi hàm greet với đối số là tên
+  </pre>
+</section>
+
+<section>
+  <h2>7. Làm việc với DOM</h2>
+  <p>DOM (Document Object Model) là cấu trúc của trang HTML. JavaScript có thể truy cập và thay đổi nội dung, kiểu dáng của trang thông qua DOM.</p>
+  <pre>
+let heading = document.querySelector('h1');
+heading.textContent = "Tiêu đề mới bằng JavaScript";
+  </pre>
+</section>
+
+<section>
+  <h2>8. Xử lý sự kiện</h2>
+  <p>JavaScript cho phép bạn thêm các sự kiện để phản hồi hành động người dùng, ví dụ như nhấn nút, di chuột, nhập liệu,...</p>
+  <p>Dưới đây là ví dụ về cách thêm sự kiện nhấn nút:</p>
+  <pre>
+&lt;button id="btn"&gt;Nhấn tôi&lt;/button&gt;
+
+&lt;script&gt;
+  document.getElementById('btn').onclick = function() {
+    alert("Bạn đã nhấn nút");
+  }
+&lt;/script&gt;
+  </pre>
+  <p>Khi người dùng bấm vào nút, sẽ hiện ra thông báo.</p>
+</section>
+
+<section>
+  <h2>9. Tổng kết</h2>
+  <p>Qua khóa học này, bạn đã nắm được những kiến thức cơ bản về JavaScript, bao gồm biến, kiểu dữ liệu, toán tử, câu điều kiện, vòng lặp, hàm, DOM và xử lý sự kiện. Đây là nền tảng vững chắc để tiếp tục học các chủ đề nâng cao hơn.</p>
+</section>
+
+</body>
+</html>

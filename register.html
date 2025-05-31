@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đăng ký</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('../loginbackground/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      z-index: -1;
+    }
+
+    /* Taskbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffcc00;
+      padding: 10px 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .login-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 60px);
+      padding-top: 30px;
+    }
+
+    .login-box {
+      background-color: rgba(255, 255, 255, 0.96);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      width: 320px;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      color: #333;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-box button:hover {
+      background-color: #e6b800;
+    }
+
+    .toggle-text {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .toggle-text span {
+      color: #007bff;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo-container">
+      <img src="../logo/logo.png" alt="Logo" onerror="this.style.display='none'">
+      <span><strong>OnlineLearn</strong></span>
+    </div>
+    <div class="nav-links">
+      <a href="#">Trang chủ</a>
+      <a href="#">Khóa học</a>
+      <a href="#">Liên hệ</a>
+    </div>
+  </div>
+
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Đăng ký</h2>
+      <input type="text" placeholder="Họ và tên" />
+      <input type="text" placeholder="Email" />
+      <input type="text" placeholder="Tên đăng nhập" />
+      <input type="password" placeholder="Mật khẩu" />
+      <button>Đăng ký</button>
+      <div class="toggle-text">
+        Đã có tài khoản? <span onclick="window.location.href='login.html'">Đăng nhập</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
